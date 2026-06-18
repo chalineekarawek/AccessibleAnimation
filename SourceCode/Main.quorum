@@ -145,24 +145,20 @@ have a name, which will be put in the model's description if the animation is ac
             state:SetStarted(true)
             cesium:SetAnimationState(state)
         elseif event:keyCode = event:TAB
-            output "Moving to Next Joint"
-            SetToNextDummy(currentChannel)
-            
+            SetToNextDummy()
         elseif event:keyCode = event:ENTER
-            output "Entering Cesium Model."
             if cesium:IsFocused()
                 channelIndex = 0
-                currentChannel = channels:Get(channelIndex)
-                SetToNextDummy(currentChannel)
+                SetToNextDummy()
             end
         elseif event:keyCode = event:E
             cesium:StopAnimation()
 end
  end
     
-    action SetToNextDummy(AnimationChannel channel)
+    action SetToNextDummy
         currentChannel = channels:Get(channelIndex)
-        text name = channel:GetBone()
+        text name = currentChannel:GetBone()
         /* 
 We could use anything for accessibility, but by default these are the options. Imagine
 the things in these arrays are like positions. They are not frames of animation, but 
